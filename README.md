@@ -66,7 +66,7 @@ ${POSE_ROOT}
  
 
 ```
-python pose_train.py \
+python pose_valid.py \
     --modelName tDense \
     --modelDir ./valid_model/tDense.pth \
     --dataDir ./data/sample_valid
@@ -75,7 +75,7 @@ python pose_train.py \
 #### Training on CDEHP sample_train dataset using data ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing))
 
 ```
-python pose_valid.py \
+python pose_train.py \
     --modelName tDense \
     --rootTrain ./data/sample_train \
     --rootValid ./data/sample_valid \
