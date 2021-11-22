@@ -33,8 +33,9 @@ The code is developed using python 3.8 on Ubuntu 20.04. NVIDIA GPUs are needed. 
    ${POSE_ROOT}
     `-- valid_model
         tDense.pth
-    `-- valid_data
-        *
+    `-- data
+        sample_valid
+        sample_train
    ```
    
 ### Data preparation
