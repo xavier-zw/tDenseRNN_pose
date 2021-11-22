@@ -6,8 +6,8 @@ class CFG:
     MODEL_NAME = "tDense"
     SAVE_PATH = MODEL_NAME + "_test"
     result_txt = SAVE_PATH + ".txt"
-    ROOT_TRAIN = '/home/datasets/ZJUT/Verified_train'
-    ROOT_VALID = '/home/datasets/ZJUT/Verified_valid'
+    ROOT_TRAIN = './data/sample_train'
+    ROOT_VALID = './data/sample_valid'
     OUTPUT_DIR = ''
     save_show_image = "show"
 
