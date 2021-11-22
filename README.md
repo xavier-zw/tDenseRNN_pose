@@ -82,4 +82,6 @@ python valid_action.py \
     --Temporal 4
 ```
 
-<p> <video id="video" controls="" preload="none">     <source id="mp4" src="show.avi" type="video/mp4"> </video> </p>
+<p align='center'>
+	<img src="./show.gif" style="zoom:100%;" />
+</p>
