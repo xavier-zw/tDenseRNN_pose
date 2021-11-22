@@ -56,7 +56,7 @@ def plot_2d(CFG, dvs_frame, joint, pre, index, save_path):
 
 
 def valid(CFG, inputs, targets, joint_true, image_true, rectangle, i, save_path):
-
+    global oks_res
     inputs, targets,joint_true = inputs.unsqueeze(dim=0), targets.unsqueeze(dim=0), joint_true.unsqueeze(dim=0)
     pred_all = []
     with torch.no_grad():
@@ -69,7 +69,11 @@ def valid(CFG, inputs, targets, joint_true, image_true, rectangle, i, save_path)
         _, avg_acc, cnt, pred, oks = accuracy(out.cpu().numpy(),
                                               tar.cpu().numpy())
         preds, maxvals = get_final_preds(out.clone().cpu().numpy(),rectangle)
+        acc_pck.update(avg_acc, cnt)
+        acc_oks.update(np.array(oks).mean(), cnt)
+        oks_res += oks
         pred_all.append(preds)
+
     plot_2d(CFG, image_true, joint_true, pred_all, i, save_path)
 
 
@@ -88,7 +92,7 @@ def parse_args():
     parser.add_argument('--dataDir',
                         help='data directory',
                         type=str,
-                        default="./valid_data/A0017P0005/S00")
+                        default="./data/sample_valid/A0017P0005/S00")
     args = parser.parse_args()
 
     return args
@@ -104,6 +108,10 @@ if __name__ == '__main__':
     epochs = CFG.END_EPOCH
     begin_epoch = CFG.BEGIN_EPOCH
     save_dir = CFG.SAVE_PATH
+
+    acc_pck = AverageMeter()
+    acc_oks = AverageMeter()
+    oks_res = []
 
     if not os.path.exists(save_dir):
         os.mkdir(save_dir)
@@ -161,3 +169,6 @@ if __name__ == '__main__':
             target_weights[k] = target_weight
 
         valid(CFG, inputs, targets, joint_true, image_true, rectangle, i, CFG.save_show_image)
+    ap_5 = np.sum(np.array(oks_res) >= 0.5) / len(oks_res)
+    ap_75 = np.sum(np.array(oks_res) >= 0.75) / len(oks_res)
+    print("pck:", str(acc_pck.avg), "\nAP:", str(acc_oks.avg), "\nAP_0.5:", str(ap_5), "\nAP_0.75:", str(ap_75))
