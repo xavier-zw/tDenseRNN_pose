@@ -16,6 +16,7 @@ The code is developed using python 3.8 on Ubuntu 20.04. NVIDIA GPUs are needed. 
 
    ```
    ${POSE_ROOT}
+   ├── data
    ├── dataset
    ├── dhp19
    ├── models
