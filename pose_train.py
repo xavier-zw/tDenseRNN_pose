@@ -123,7 +123,11 @@ def parse_args():
     parser.add_argument('--Temporal',
                         help='Temporal of split video',
                         type=int,
-                        default='')
+                        default=4)
+    parser.add_argument('--batch_size',
+                        help='Temporal of split video',
+                        type=int,
+                        default=16)
 
     args = parser.parse_args()
 
@@ -139,6 +143,8 @@ def update_cfg(args):
         CFG.ROOT_VALID = args.rootValid
     if args.Temporal:
         CFG.temporal = args.Temporal
+    if args.batch_size:
+        CFG.BATCH_SIZE = args.batch_size
 
 
 if __name__ == '__main__':
