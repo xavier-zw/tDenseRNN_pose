@@ -70,6 +70,7 @@ python pose_valid.py \
     --modelName tDense \
     --modelDir ./valid_model/tDense.pth \
     --dataDir ./data/sample_valid
+    --batch_size 4
 ```
 
 #### Training on CDEHP sample_train dataset using data ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing))
@@ -80,6 +81,7 @@ python pose_train.py \
     --rootTrain ./data/sample_train \
     --rootValid ./data/sample_valid \
     --Temporal 4
+    --batch_size 64
 ```
 
 #### Visualisation of some of the test data.
