@@ -75,6 +75,11 @@ def parse_args():
                         help='data directory',
                         type=str,
                         default="./data/sample_valid")
+    parser.add_argument('--batch_size',
+                        help='data directory',
+                        type=int,
+                        default=4)
+
     args = parser.parse_args()
 
     return args
@@ -96,7 +101,7 @@ if __name__ == '__main__':
         val_train_data_label.append(os.path.join(root_valid, x, "S00", "label_event_fill"))
     print("Done!")
 
-    batch_size = CFG.BATCH_SIZE
+    batch_size = args.batch_size
 
     # Build dataset
     valid_data = CDES25Dataset(val_train_data_list, val_train_data_label, CFG, False)
