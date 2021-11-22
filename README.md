@@ -27,78 +27,55 @@ The code is developed using python 3.8 on Ubuntu 20.04. NVIDIA GPUs are needed. 
    └── requirements.txt
    ```
 
-7. Download pretrained models from our model zoo([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing) or [OneDrive](https://1drv.ms/f/s!AhIXJn_J-blW4AwKRMklXVzndJT0))
+7. Download pretrained models from our model tDense.pth and valid data([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing).
    ```
    ${POSE_ROOT}
     `-- valid_model
         tDense.pth
+    `-- valid_data
+        *
    ```
    
 ### Data preparation
 
-**For test data**, please download from [COCO download](http://cocodataset.org/#download), 2017 Train/Val is needed for COCO keypoints training and validation.
+**For test data**, please download from ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing).
 Download and extract them under {POSE_ROOT}/data, and make them look like this:
 ```
 ${POSE_ROOT}
 |-- data
-`-- |-- coco
-    `-- |-- annotations
-        |   |-- person_keypoints_train2017.json
-        |   `-- person_keypoints_val2017.json
-        `-- images
-            |-- train2017
-            |   |-- 000000000009.jpg
-            |   |-- 000000000025.jpg
-            |   |-- 000000000030.jpg
+`-- |-- sample_train
+    `-- |-- A*P*/S00
+            `-- color
+            |   |-- 000001.png
+            |   |-- 000002.png
+            |   |-- 000003.png
             |   |-- ... 
-            `-- val2017
-                |-- 000000000139.jpg
-                |-- 000000000285.jpg
-                |-- 000000000632.jpg
-                |-- ... 
+            `-- depth_raw
+            `-- event
+            `-- image_event_binary
+            `-- label_color_fill
+            `-- label_event_fill
+            
 ```
 
 ### Training and Testing
 
-#### Testing on COCO val2017 dataset using model zoo's models ([GoogleDrive](https://drive.google.com/drive/folders/1X9-TzWpwbX2zQf2To8lB-ZQHMYviYYh6?usp=sharing))
+#### Testing on CDEHP valid_data dataset using model ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing))
  
 
-For single-scale testing:
-
 ```
-python tools/valid.py \
-    --cfg experiments/coco/higher_hrnet/w32_512_adam_lr1e-3.yaml \
-    TEST.MODEL_FILE models/pytorch/pose_coco/pose_higher_hrnet_w32_512.pth
+python valid_action.py \
+    --modelName tDense \
+    --modelDir ./tDense_pose/valid_model/tDense.pth \
+    --dataDir ./tDense_pose/valid_data
 ```
-
-By default, we use horizontal flip. To test without flip:
-
-```
-python tools/valid.py \
-    --cfg experiments/coco/higher_hrnet/w32_512_adam_lr1e-3.yaml \
-    TEST.MODEL_FILE models/pytorch/pose_coco/pose_higher_hrnet_w32_512.pth \
-    TEST.FLIP_TEST False
-```
-
-Multi-scale testing is also supported, although we do not report results in our paper:
-
-```
-python tools/valid.py \
-    --cfg experiments/coco/higher_hrnet/w32_512_adam_lr1e-3.yaml \
-    TEST.MODEL_FILE models/pytorch/pose_coco/pose_higher_hrnet_w32_512.pth \
-    TEST.SCALE_FACTOR '[0.5, 1.0, 2.0]'
-```
-
 
 #### Training on COCO train2017 dataset
 
 ```
-python tools/dist_train.py \
-    --cfg experiments/coco/higher_hrnet/w32_512_adam_lr1e-3.yaml 
+python valid_action.py \
+    --modelName tDense \
+    --rootTrain ./data/sample_train \
+    --rootValid ./data/sample_valid \
+    --Temporal 4
 ```
-
-By default, it will use all available GPUs on the machine for training. To specify GPUs, use
-
-```
-CUDA_VISIBLE_DEVICES=0,1 python tools/dist_train.py \
-    --cfg experiments/coco/higher_hrnet/w32_512_adam_lr1e-3.yaml 
