@@ -28,7 +28,7 @@ The code is developed using python 3.8 on Ubuntu 20.04. NVIDIA GPUs are needed. 
    └── requirements.txt
    ```
 
-7. Download pretrained models from our model tDense.pth and valid data([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing).
+7. Download pretrained models from our model tDense.pth and valid data([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing)).
    ```
    ${POSE_ROOT}
     `-- valid_model
