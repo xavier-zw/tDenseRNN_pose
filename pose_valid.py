@@ -27,10 +27,9 @@ def val():
     acc_pck = AverageMeter()
     acc_oks = AverageMeter()
     # switch to evaluate mode
-
+    model.eval()
     with torch.no_grad():
         end = time.time()
-        model.eval()
         num = 0
         oks_res = []
         for i, (inputs, targets, target_weight) in enumerate(valid_dataset):
