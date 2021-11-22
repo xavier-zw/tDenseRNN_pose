@@ -62,26 +62,35 @@ ${POSE_ROOT}
 
 ### Training and Testing
 
-#### Testing on CDEHP valid_data dataset using model ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing))
+#### Testing on CDEHP sample_valid dataset using model and data ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing))
  
 
 ```
-python valid_action.py \
+python pose_train.py \
     --modelName tDense \
-    --modelDir ./tDense_pose/valid_model/tDense.pth \
-    --dataDir ./tDense_pose/valid_data
+    --modelDir ./valid_model/tDense.pth \
+    --dataDir ./data/sample_valid
 ```
 
-#### Training on COCO train2017 dataset
+#### Training on CDEHP sample_train dataset using data ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing))
 
 ```
-python valid_action.py \
+python pose_valid.py \
     --modelName tDense \
     --rootTrain ./data/sample_train \
     --rootValid ./data/sample_valid \
     --Temporal 4
 ```
 
+#### Visualisation of some of the test data.
+
+```
+python valid_action.py \
+    --modelName tDense \
+    --modelDir ./valid_model/tDense.pth \
+    --dataDir ./data/sample_valid/A0017P0005/S00
+```
+The output is saved in the show folder.You can convert the output to video and gif files using image_video.py, which works as follows:
 <p align='center'>
 	<img src="./show.gif" style="zoom:100%;" />
 </p>
