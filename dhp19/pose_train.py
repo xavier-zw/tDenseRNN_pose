@@ -1,13 +1,9 @@
-# wu
-# https://github.com/HowieMa/lstm_pm_pytorch.git
 import argparse
-# from model.lstm_pm import LSTM_PM
 from DHP19Data import Dhp19PoseDataset
 from hrnet import get_pose_net
 from utils import JointsMSELoss,get_optimizer,save_loss
 from config import config
 from utils import AverageMeter, accuracy,get_final_preds
-# from src.tools import *
 import os
 import torch
 import torch.optim as optim
@@ -31,8 +27,8 @@ if dataN == 1:
     train_label_dir = '../data/train_one/'
 
 if dataN == 2:
-    train_data_dir = '/home/shao_old/lance/实验/data/train'
-    train_label_dir = '/home/shao_old/lance/实验/data/train'
+    train_data_dir = './data/train'
+    train_label_dir = './data/train'
 
 if dataN == 3:
     train_data_dir = '../data/train_action/'
@@ -139,7 +135,7 @@ def val():
 
     with torch.no_grad():
         end = time.time()
-        path_ = '/home/shao_old/lance/实验/data_test/select'
+        path_ = './data_test/select'
         path_list = os.listdir(path_)
         path_list.sort(key=lambda x: (int(x[0:1]), int(x[2:3])))
         model.eval()
