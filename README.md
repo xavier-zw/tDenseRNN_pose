@@ -28,7 +28,7 @@ The code is developed using python 3.8 on Ubuntu 20.04. NVIDIA GPUs are needed. 
    └── requirements.txt
    ```
 
-7. Download pretrained models from our model tDense.pth and valid data([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing)).
+7. The pretrained models from our model tDense.pth and data.
    ```
    ${POSE_ROOT}
     `-- valid_model
@@ -40,29 +40,24 @@ The code is developed using python 3.8 on Ubuntu 20.04. NVIDIA GPUs are needed. 
    
 ### Data preparation
 
-**For test data**, please download from ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing).
-Download and extract them under {POSE_ROOT}/data, and make them look like this:
+**For train and valid data*.
 ```
 ${POSE_ROOT}
 |-- data
 `-- |-- sample_train
     `-- |-- A*P*/S00
-            `-- color
+            `-- image_event_binary
             |   |-- 000001.png
             |   |-- 000002.png
             |   |-- 000003.png
             |   |-- ... 
-            `-- depth_raw
-            `-- event
-            `-- image_event_binary
-            `-- label_color_fill
             `-- label_event_fill
             
 ```
 
 ### Training and Testing
 
-#### Testing on CDEHP sample_valid dataset using model and data ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing))
+#### Testing on CDEHP sample_valid dataset using pretrained model from our model tDense.pth.
  
 
 ```
@@ -73,7 +68,7 @@ python pose_valid.py \
     --batch_size 4
 ```
 
-#### Training on CDEHP sample_train dataset using data ([GoogleDrive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=sharing))
+#### Training on CDEHP sample_train dataset.
 
 ```
 python pose_train.py \
