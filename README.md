@@ -1,3 +1,6 @@
+# A Temporal Densely Connected Recurrent Network for Event-based Human Pose Estimation
+Event camera is an emerging bio-inspired vision sensors that report per-pixel brightness changes asynchronously. It holds noticeable advantage of high dynamic range, high speed response, and low power budget that enable it to best capture local motions in uncontrolled environments. This motivates us to unlock the potential of event cameras for human pose estimation, as the human pose estimation with event cameras is rarely explored. Due to the novel paradigm shift from conventional frame-based cameras, however, event signals in a time interval contain very limited information, as event cameras can only capture the moving body parts and ignores those static body parts, resulting in some parts to be incomplete or even disappeared in the time interval. This paper proposes a novel densely connected recurrent architecture to address the problem of incomplete information. By this recurrent architecture, we can explicitly model not only the sequential but also non-sequential geometric consistency across time steps to accumulate information from previous frames to recover the entire human bodies, achieving a stable and accurate human pose estimation from event data. Moreover, to better evaluate our model, we collect a large-scale multimodal event-based dataset that comes with human pose annotations, which is by far the most challenging one to the best of our knowledge. The experimental results on two public datasets and our own dataset demonstrate the effectiveness and strength of our approach. Code is available online for facilitating the future research.
+
 ## Environment
 The code is developed using python 3.8 on Ubuntu 20.04. NVIDIA GPUs are needed. The code is developed and tested using 4 NVIDIA 2080ti GPU cards. 
 
@@ -89,3 +92,18 @@ The output is saved in the show folder.You can convert the output to video and g
 <p align='center'>
 	<img src="./show.gif" style="zoom:100%;" />
 </p>
+
+ ## Citation
+ If you find this code useful, please cite our work with the following bibtex:
+ ```
+ @article{Shao2023pr,
+title = {A Temporal Densely Connected Recurrent Network for Event-based Human Pose Estimation},
+journal = {Pattern Recognition},
+volume = {will appear soon},
+pages = {will appear soon},
+year = {will appear soon},
+issn = {0031-3203},
+doi = {https://doi.org/10.1016/j.patcog.2023.110048},
+url = {https://www.sciencedirect.com/science/article/pii/S0031320323007458?via%3Dihub},
+author = {Zhanpeng Shao, Xueping Wang, Wen Zhou, Wuzhen Wang, Jianyu Yang, Youfu Li},
+ ```
