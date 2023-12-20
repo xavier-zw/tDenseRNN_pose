@@ -62,18 +62,22 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Train keypoints network')
 
     parser.add_argument('--modelName',
-                        help='model names (tDense or other)',
+                        help='models names (tDense or other)',
                         type=str,
                         default="tDense"
     )
     parser.add_argument('--modelDir',
-                        help='model directory',
+                        help='models directory',
                         type=str,
-                        default="./valid_model/tDense.pth")
+                        default="./valid_model/model_62.pth")
     parser.add_argument('--dataDir',
                         help='data directory',
                         type=str,
                         default="./data/sample_valid")
+    parser.add_argument('--Temporal',
+                        help='Temporal of split video',
+                        type=int,
+                        default=8)
     parser.add_argument('--batch_size',
                         help='data directory',
                         type=int,
@@ -83,13 +87,20 @@ def parse_args():
 
     return args
 
+def update_cfg(args):
+    if args.modelName:
+        CFG.MODEL_NAME = args.modelName
+    if args.Temporal:
+        CFG.temporal = args.Temporal
+    if args.batch_size:
+        CFG.BATCH_SIZE = args.batch_size
 
 if __name__ == '__main__':
     args = parse_args()
     device = CFG.device
     # hyper parameter
+    update_cfg(args)
     temporal = CFG.temporal
-
     root_valid = args.dataDir
     val_data_dir_list = os.listdir(root_valid)
     val_train_data_list = []
