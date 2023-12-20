@@ -58,7 +58,7 @@ ${POSE_ROOT}
 ```
 
 ### Training and Testing
-
+Our pre-trained model and some sample data are available for download on [Google Drive](https://drive.google.com/drive/folders/1rfaQ4h2xJx8wlbnXTl5-VCzE5iQpCtN9?usp=drive_link). 
 #### Testing on CDEHP sample_valid dataset using pretrained model from our model tDense.pth.
  
 
